@@ -20,6 +20,11 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.getElementById('setup').addEventListener('touchstart', this.setup.bind(this), false);
+        document.getElementById('period2').addEventListener('click', this.period2.bind(this), false);
+        document.getElementById('period3').addEventListener('click', this.period3.bind(this), false);
+        document.getElementById('stopperiod').addEventListener('click', this.stopperiod.bind(this), false);
+        document.getElementById('teardown').addEventListener('click', this.teardown.bind(this), false);
     },
 
     // deviceready Event Handler
@@ -28,19 +33,103 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        zendrivefinalplugin.setup(
+    },
+    
+    setup: function() {
+        console.log('Success for setup!');
+        zendrivefinalplugin.setup
+        (
             'Some argument',
-            function(msg) { 
+            function(msg) {
+                //var receivedElement =
                 document
                     .getElementById('deviceready')
                     .querySelector('.received')
-                    .innerHTML = msg;   
+                    .innerHTML = msg
+                //receivedElement.setAttribute('style', 'display:block;');
             },
             function(err) {
                 document
                     .getElementById('deviceready')
-                    .innerHTML = '<p class="event received">' + err + '</p>'; 
-            });
+                    .innerHTML = '<p class="event received">' + err + '</p>';
+            }
+         );
+    },
+    
+    period2: function() {
+        console.log('Success for period2!');
+        zendrivefinalplugin.startPeriod2
+        (
+             'Some argument',
+             function(msg) {
+                 document
+                     .getElementById('deviceready')
+                     .querySelector('.received')
+                     .innerHTML = msg;
+             },
+             function(err) {
+                 document
+                     .getElementById('deviceready')
+                     .innerHTML = '<p class="event received">' + err + '</p>';
+             }
+         );
+    },
+    
+    period3: function() {
+        console.log('Success for period3!');
+        zendrivefinalplugin.startPeriod3
+        (
+             'Some argument',
+             function(msg) {
+                 document
+                     .getElementById('deviceready')
+                     .querySelector('.received')
+                     .innerHTML = msg;
+             },
+             function(err) {
+                 document
+                     .getElementById('deviceready')
+                     .innerHTML = '<p class="event received">' + err + '</p>';
+             }
+         );
+    },
+    
+    stopperiod: function() {
+        console.log('Success for stopperiod!');
+        zendrivefinalplugin.stopPeriod
+        (
+             'Some argument',
+             function(msg) {
+                 document
+                     .getElementById('deviceready')
+                     .querySelector('.received')
+                     .innerHTML = msg;
+             },
+             function(err) {
+             document
+                 .getElementById('deviceready')
+                 .innerHTML = '<p class="event received">' + err + '</p>';
+             }
+         );
+    },
+    
+    teardown: function() {
+        console.log('Success for teardown!');
+        zendrivefinalplugin.teardown
+        (
+             'Some argument',
+             function(msg) {
+                 document
+                     .getElementById('deviceready')
+                     .querySelector('.received')
+                     .innerHTML = msg;
+             },
+             function(err) {
+                 document
+                     .getElementById('deviceready')
+                     .innerHTML = '<p class="event received">' + err + '</p>';
+             }
+         );
     },
 
     // Update DOM on a Received Event
